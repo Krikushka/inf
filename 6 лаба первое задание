@@ -1,0 +1,21 @@
+a = input().split()
+b = []
+c = []
+f = False
+for i in range(len(a)):
+    if a[i] == '(':
+        b.append(a[i])
+        c.append(i)
+    if a[i] == ')':
+        if len(b) == 0:
+            print('Лишняя скобка на', i+1, 'позиции')
+            f = True
+            break
+        if len(b) > 0:
+            if b[-1] == '(':
+                b.pop()
+                c.pop()
+if len(b) == 0 and f == False:
+    print('Последовательность правильная')
+if len(b)>0 and f == False:
+    print('Скобка не закрылась на позиции', c[-1])
