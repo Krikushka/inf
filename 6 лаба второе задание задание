@@ -1,0 +1,53 @@
+Глубина:
+#Рекурсия
+def dfs(sp, sr, graph, visited):
+    if sp == sr: #Начальная точка - искомая?
+        return True
+    if sp in visited: #Посещена ли начальная точка?
+        return False
+
+    visited = visited + [sp] #Начальная точка как посещённая
+    for neighbour in graph[sp]:
+        if not neighbour in visited:
+            if dfs(neighbour, sr, graph, visited): #Значение функции истинное?
+                return True
+
+    return False #Значение функции неверное? Ты лох
+
+graph = {'A': ['B', 'C'],
+         'B': ['A', 'D'],
+         'C': ['A', 'D', 'F', 'E'],
+         'D': ['B', 'C'],
+         'E': ['C', 'F', 'G'],
+         'F': ['C', 'E', 'G'],
+         'G': ['E', 'F', 'H', 'K'],
+         'H': ['G', 'K'],
+         'K': ['G', 'H']}
+print(dfs('A', 'K', graph, []))
+
+Ширина:
+#Рекурсия
+def dfs(sp, sr, graph, visited):
+    if sp == sr: #Начальная точка - искомая?
+        return True
+    if sp in visited: #Посещена ли начальная точка?
+        return False
+
+    visited = visited + [sp] #Начальная точка как посещённая
+    for neighbour in graph[sp]:
+        if not neighbour in visited:
+            if dfs(neighbour, sr, graph, visited): #Значение функции истинное?
+                return True
+
+    return False #Значение функции неверное? Ты лох
+
+graph = {'A': ['B', 'C'],
+         'B': ['A', 'D'],
+         'C': ['A', 'D', 'F', 'E'],
+         'D': ['B', 'C'],
+         'E': ['C', 'F', 'G'],
+         'F': ['C', 'E', 'G'],
+         'G': ['E', 'F', 'H', 'K'],
+         'H': ['G', 'K'],
+         'K': ['G', 'H']}
+print(dfs('A', 'K', graph, []))
